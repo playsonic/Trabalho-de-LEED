@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include <unistd.h>
 #define T 10
 
 typedef struct{
@@ -26,9 +25,7 @@ void senhaFalha(int *plimiteTentativa) {
         printf("\n*** TRÊS TENTATIVAS REALIZADAS ***\n");
 
         printf("\n*** RETORNANDO À TELA PRINCIPAL ***\n");
-
-        sleep(4);
-
+        
     }
 }
 
@@ -162,9 +159,7 @@ int main () {
                     printf("\nAluno cadastrado com sucesso!\n");
 
                     strcpy(turmaVerificacao, "");
-
-                    sleep(4);
-
+                    
                     contadorAluno++;
 
                     break;
