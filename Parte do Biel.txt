@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+typedef struct {
+    char nome[50];
+    int matricula;
+    float frequencia;
+    float nota;
+    char turma[20];
+    char email[50];
+} Aluno;
+
+
+
+int main() {
+    Aluno alunos[MAX];
+       int qtd = 0;
+
+    
+    
+    while (1) {
+        
+        printf("\n1 - Cadastrar\n2 - Mostrar\n3 - Excluir\n4 - Sair\nEscolha: ");
+        
+        int opcao;
+        
+        scanf("%d", &opcao);
+
+        
+        if (opcao == 1) {
+            
+            if (qtd >= MAX) {
+                
+                printf("Limite de alunos atingido!\n");
+                
+                continue;
+            }
+
+            
+            printf("Nome: ");
+            scanf(" %[^\n]", alunos[qtd].nome);
+            
+            printf("Matrícula: ");
+            scanf("%d", &alunos[qtd].matricula);
+            
+            printf("Frequência: ");
+            scanf("%f", &alunos[qtd].frequencia);
+            
+            printf("Nota: ");
+            scanf("%f", &alunos[qtd].nota);
+            
+            printf("Turma: ");
+            scanf(" %[^\n]", alunos[qtd].turma);
+            
+            printf("E-mail: ");
+            scanf(" %[^\n]", alunos[qtd].email);
+
+          
+            int existe = 0;
+            
+                for (int i = 0; i < qtd; i++) {
+                
+                if (alunos[i].matricula == alunos[qtd].matricula) {
+                   
+                    printf("Erro: matrícula já existe!\n");
+                    
+                    existe = 1;
+                    
+                    break;
+                }
+            }
+
+            
+                if (!existe) {
+                
+                qtd++;
+                
+                printf("Aluno cadastrado!\n");
+            }
+
+        
+           
+        } else if (opcao == 2) {
+            
+            printf("\n--- Alunos Cadastrados ---\n");
+            
+            for (int i = 0; i < qtd; i++) {
+
+        // Mostra os dados de cada aluno na tela
+
+                printf("%d - %s | Mat: %d | Freq: %.1f | Nota: %.1f | Turma: %s | Email: %s\n",
+
+
+                       i+1, alunos[i].nome, alunos[i].matricula, 
+                       
+                       alunos[i].frequencia, alunos[i].nota, 
+                       
+                       alunos[i].turma, alunos[i].email);
+            }
+
+        } else if (opcao == 3) {
+            
+            printf("Digite a matrícula para excluir: ");
+            
+            int mat;
+            
+            scanf("%d", &mat);
+
+            int pos = -1;
+            
+            for (int i = 0; i < qtd; i++) {
+                
+                if (alunos[i].matricula == mat) {
+                    
+                    pos = i;
+                   
+                    break;
+                }
+            }
+
+            if (pos != -1) {
+                
+                for (int i = pos; i < qtd-1; i++) {
+                    
+                    alunos[i] = alunos[i+1];
+                }
+                
+                qtd--;
+                printf("Aluno removido!\n");
+           
+            } else {
+                printf("Matrícula não encontrada!\n");
+            }
+
+       
+        } else if (opcao == 4) {
+            printf("Saindo...\n");
+            break;
+       
+        } else {
+            printf("Opção inválida!\n");
+        
+            
+            
+            
+        }
+    }
+
+    return 0;
+}
