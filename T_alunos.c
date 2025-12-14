@@ -121,7 +121,7 @@ int main () {
                     }
 
 
-                printf("Informe a nota do aluno (0 a 10): ");
+                printf("\nInforme a nota do aluno (0 a 10): ");
 
                 scanf("%f", &alunos[contadorAluno].nota);
 
@@ -135,7 +135,7 @@ int main () {
                     break;
                 }
 
-                printf("Informe a frequência do aluno (0 a 100): ");
+                printf("\nInforme a frequência do aluno (0 a 100): ");
 
                 scanf("%d", &alunos[contadorAluno].frequcia);
 
@@ -152,14 +152,14 @@ int main () {
 
                 strcpy(turmaVerificacao, "");
 
-                printf("\n- Programação\n- Empreendedorismo\n- Probabilidade\n- Sistemas\nDigite a turma do aluno: ");
+                printf("\n- Programação\n- Empreendedorismo\n- Probabilidade\n- Sistemas\n\nDigite a turma do aluno: ");
                 scanf("%s", turmaVerificacao);
 
                 if (strcmp(turmaVerificacao, "Programação") == 0 || strcmp(turmaVerificacao, "Empreendedorismo") == 0 || strcmp(turmaVerificacao, "Probabilidade") == 0 || strcmp(turmaVerificacao, "Sistemas") == 0) {
 
                     strcpy(alunos[contadorAluno].turma, turmaVerificacao);
 
-                    printf("Aluno cadastrado com sucesso!\n");
+                    printf("\nAluno cadastrado com sucesso!\n");
 
                     strcpy(turmaVerificacao, "");
 
@@ -218,7 +218,7 @@ int main () {
 
                 senha = 0;
 
-                printf("Digite a senha do administrador: ");
+                printf("\nDigite a senha do administrador: ");
 
                 scanf("%d", &senha);
 
@@ -226,7 +226,7 @@ int main () {
 
                     salvarIndex = -1;
 
-                    printf("Informe a matrícula do aluno desejado: ");
+                    printf("\n\nInforme a matrícula do aluno desejado: ");
 
                     scanf("%d", &matriculaVerificacao);
 
@@ -248,7 +248,7 @@ int main () {
 
                         matriculaVerificacao = -1;
 
-                        printf("Aluno excluído com sucesso.\n");
+                        printf("\nAluno excluído com sucesso.\n");
 
                         break;
 
@@ -281,7 +281,7 @@ int main () {
 
         //Mostrar todos os alunos
 
-        printf("Lista de alunos cadastrados:\n");
+        printf("\nLista de alunos cadastrados:\n");
         for (i = 0; i < contadorAluno; i++) {
             printf("\n--------------------------\n");
             printf("Nome: %s\nNúmero da matricula: %d\nNota: %.2f\nFrequência do aluno: %d%%\nTurma do aluno: %s",
@@ -379,7 +379,7 @@ int main () {
 
         strcpy(turmaVerificacao, "");
 
-        printf("\n- Programação\n- Empreendedorismo\n- Probabilidade\n- Sistemas\nDigite a Turma do aluno: ");
+        printf("\n- Programação\n- Empreendedorismo\n- Probabilidade\n- Sistemas\n\nDigite a Turma do aluno: ");
 
         scanf("%s", turmaVerificacao);
 
