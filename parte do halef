@@ -1,0 +1,211 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+typedef struct {
+    char nome[50];
+    int matricula;
+    float frequencia;
+    float nota;
+    char turma[20];
+    char email[50];
+} Aluno;
+
+
+
+int main() {
+    Aluno alunos[MAX];
+       int qtd = 0;
+
+    
+    
+    while (1) {
+        
+        printf("1 - Cadastrar\n2 - Mostrar\n3 - Excluir \n7 - Mostrar em ordem\n8 - Mostrar aprovados\n9 - Mostrar reprovados\n10 - Encerrar programa\nEscolha: ");
+        
+        int opcao;
+        
+        scanf("%d", &opcao);
+
+        
+        if (opcao == 1) {
+            
+            if (qtd >= MAX) {
+                
+                printf("Limite de alunos atingido!\n");
+                
+                continue;
+            }
+
+            
+            printf("Nome: ");
+            scanf(" %[^\n]", alunos[qtd].nome);
+            
+            printf("Matrícula: ");
+            scanf("%d", &alunos[qtd].matricula);
+            
+            printf("Frequência: ");
+            scanf("%f", &alunos[qtd].frequencia);
+            
+            printf("Nota: ");
+            scanf("%f", &alunos[qtd].nota);
+            
+            printf("Turma: ");
+            scanf(" %[^\n]", alunos[qtd].turma);
+            
+            printf("E-mail: ");
+            scanf(" %[^\n]", alunos[qtd].email);
+
+          
+            int existe = 0;
+            
+                for (int i = 0; i < qtd; i++) {
+                
+                if (alunos[i].matricula == alunos[qtd].matricula) {
+                   
+                    printf("Erro: matrícula já existe!\n");
+                    
+                    existe = 1;
+                    
+                    break;
+                }
+            }
+
+            
+                if (!existe) {
+                
+                qtd++;
+                
+                printf("Aluno cadastrado!\n");
+            }
+
+        
+           
+        } else if (opcao == 2) {
+            
+            printf("\n--- Alunos Cadastrados ---\n");
+            
+            for (int i = 0; i < qtd; i++) {
+
+        // Mostra os dados de cada aluno na tela
+
+                printf("%d - %s | Mat: %d | Freq: %.1f | Nota: %.1f | Turma: %s | Email: %s\n",
+
+
+                       i+1, alunos[i].nome, alunos[i].matricula, 
+                       
+                       alunos[i].frequencia, alunos[i].nota, 
+                       
+                       alunos[i].turma, alunos[i].email);
+            }
+
+        } else if (opcao == 3) {
+            
+            printf("Digite a matrícula para excluir: ");
+            
+            int mat;
+            
+            scanf("%d", &mat);
+
+            int pos = -1;
+            
+            for (int i = 0; i < qtd; i++) {
+                
+                if (alunos[i].matricula == mat) {
+                    
+                    pos = i;
+                   
+                    break;
+                }
+            }
+
+            if (pos != -1) {
+                
+                for (int i = pos; i < qtd-1; i++) {
+                    
+                    alunos[i] = alunos[i+1];
+                }
+                
+                qtd--;
+                printf("Aluno removido!\n");
+           
+            } else {
+                printf("Matrícula não encontrada!\n");
+            }
+
+       
+        } else if (opcao == 7) {
+            Aluno alunos_copia[MAX];
+            Aluno temporario;
+        
+            for (int i = 0; i < qtd; i++) {
+                alunos_copia[i] = alunos[i];
+            }
+        
+            for (int i = 0; i < qtd - 1; i++) {
+                for (int j = 0; j < qtd - 1 - i; j++) {
+                    if (alunos_copia[j].matricula > alunos_copia[j + 1].matricula) {
+                        temporario = alunos_copia[j];
+                        alunos_copia[j] = alunos_copia[j + 1];
+                        alunos_copia[j + 1] = temporario;
+                    }
+                }
+            }
+        
+            printf("\n--- Alunos em ordem de matrícula ---\n");
+        
+            for (int i = 0; i < qtd; i++) {
+                printf("%d - %s | Mat: %d | Freq: %.1f | Nota: %.1f | Turma: %s | Email: %s\n",
+                       i+1,
+                       alunos_copia[i].nome,
+                       alunos_copia[i].matricula,
+                       alunos_copia[i].frequencia,
+                       alunos_copia[i].nota,
+                       alunos_copia[i].turma,
+                       alunos_copia[i].email);
+            }
+            
+        } else if (opcao == 8) {
+            printf("\n--- Alunos APROVADOS ---\n");
+        
+            for (int i = 0; i < qtd; i++) {
+                if (alunos[i].nota > 7 && alunos[i].frequencia > 75) {
+        
+                    printf("%s | Mat: %d | Freq: %.1f | Nota: %.1f | Turma: %s | Email: %s\n",
+                           alunos[i].nome,
+                           alunos[i].matricula,
+                           alunos[i].frequencia,
+                           alunos[i].nota,
+                           alunos[i].turma,
+                           alunos[i].email);
+                }
+            }
+        } else if (opcao == 9) {
+            printf("\n--- Alunos REPROVADOS ---\n");
+        
+            for (int i = 0; i < qtd; i++) {
+                if (alunos[i].nota <= 7 || alunos[i].frequencia <= 75) {
+                    printf("%s | Mat: %d | Freq: %.1f | Nota: %.1f | Turma: %s | Email: %s\n",
+                           alunos[i].nome,
+                           alunos[i].matricula,
+                           alunos[i].frequencia,
+                           alunos[i].nota,
+                           alunos[i].turma,
+                           alunos[i].email);
+                }
+    }
+        } else if (opcao == 10) {
+            printf("Programa finalizado\n");
+            break;
+       
+        } else {
+            printf("Opção inválida!\n");
+        
+            
+            
+            
+        }
+    }
+
+    return 0;
+}
